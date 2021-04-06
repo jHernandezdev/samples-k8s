@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      volumes:
+        - name: html          
+          emptyDir: {}
+            
+      containers:
+      - name: my-nginx
+        image: nginx:alpine
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html
+            name: html
+            readOnly: true
+
+      - name: html-updater
+        image: alpine
+        command: ["/bin/sh", "-c"] 
+        args: 
+          - while true; do cat "Hola" >> /html/index.html;sleep 10; done 
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"        
+        volumeMounts:
+          - mountPath: /html 
+            name: html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp
+spec:
+  type: LoadBalancer
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 80
