@@ -21,7 +21,7 @@ namespace myapp.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Hola mundo v2");
+            return Ok("Hola mundo v2!!");
         }
     }
 }

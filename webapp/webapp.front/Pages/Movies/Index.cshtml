@@ -1,0 +1,31 @@
+@page
+@model webapp.front.Pages.Movies.MoviesModel;
+
+@{ ViewData["Title"] = "Movies"; }
+
+<h1>Movie list</h1>
+
+<table>
+    <tbody>
+        @foreach (Models.Movie item in Model.Peliculas)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
