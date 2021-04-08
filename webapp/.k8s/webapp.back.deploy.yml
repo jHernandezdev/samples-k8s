@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-back
+
+spec:
+  selector:
+    matchLabels:
+      app: webapp-back
+
+  template:
+    metadata:
+      labels:
+        app: webapp-back
+    spec:
+      containers:
+      - name: webapp-back
+        image: webapp.back:v1
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        - containerPort: 443

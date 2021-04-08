@@ -24,6 +24,11 @@ namespace webapp.front
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+            services.AddHttpClient("webapp.back", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["WEBAPPBACKURL"] ?? "http://localhost:8080/");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
