@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-db
+
+spec:
+  
+  selector:
+    matchLabels:
+      app: webapp-db
+  template:
+    metadata:
+      labels:
+        app: webapp-db
+    spec:
+      volumes:
+      - name: sqlserver-data
+        azureFile:
+          secretName: azure-secret    
+          shareName: database-files
+          readOnly: false
+
+      containers:
+      - name: webapp-db
+        volumeMounts:
+          - mountPath: /var/opt/mssql
+            name: sqlserver-data
+        env:
+          - name: ACCEPT_EULA
+            value: 'Y'
+          - name: MSSQL_SA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: sqlserver-pass
+                name: azure-secret
+
+        image: microsoft/mssql-server-linux
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 1433

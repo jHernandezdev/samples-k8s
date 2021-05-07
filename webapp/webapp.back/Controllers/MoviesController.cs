@@ -12,10 +12,12 @@ namespace webapp.back.Controllers
     public class MoviesController : ControllerBase
     {
         private readonly ILogger<Movie> _logger;
+        private readonly WebAppContext _context;
 
-        public MoviesController(ILogger<Movie> logger)
+        public MoviesController(ILogger<Movie> logger, WebAppContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
@@ -23,7 +25,7 @@ namespace webapp.back.Controllers
         {
             List<Movie> peliculas = new List<Movie>
             {
-                new Movie { Genre = "Miedo", ID = 1, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "The Ring" },
+                new Movie { Genre = "Miedito", ID = 1, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "The Ring" },
                 new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Top Secret" }
             };
             return Ok(peliculas);

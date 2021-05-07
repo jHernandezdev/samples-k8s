@@ -4,6 +4,7 @@ metadata:
   name: webapp-front
 
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: webapp-front
@@ -21,7 +22,7 @@ spec:
               configMapKeyRef:
                 key: WEBAPPBACKURL
                 name: webapp
-        image: webapp.front:v1
+        image: josehh/webapp.front:v1
         imagePullPolicy: IfNotPresent
         resources:
           limits:

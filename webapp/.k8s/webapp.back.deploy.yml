@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: webapp-back
-        image: webapp.back:v1
+        image: josehh/webapp.back:v1
         imagePullPolicy: IfNotPresent
         resources:
           limits:

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace webapp.back
 {
@@ -32,6 +33,9 @@ namespace webapp.back
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "webapp.back", Version = "v1" });
             });
+            
+            services.AddDbContext<WebAppContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("WebAppContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

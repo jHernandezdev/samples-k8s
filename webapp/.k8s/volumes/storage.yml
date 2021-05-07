@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sqlserver-data
+  labels:
+    usage: sqlserver-data
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  azureFile:
+    secretName: azure-secret    
+    shareName: database-files
+    readOnly: false  
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sqlserver-data
+  annotations:
+    volume.beta.kubernetes.io/storage-class: ""
+spec:
+  accessModes:
+    - ReadWriteMany  
+  resources:
+    requests:
+      storage: 5Gi
+  selector:
+    matchLabels:
+      usage: sqlserver-data
+
+  #
+  #
+  # kubectl create secret generic azure-secret 
+  # --from-literal=azurestorageaccountname=jhdevstg 
+  # --from-literal=azurestorageaccountkey="DefaultEndpointsProtocol=https;AccountName=jhdevstg;AccountKey=bWLI/09MRuy3nDkRjN5QNO+omiQcHrHdN+Oq+IuSp8/toohwyMfHReAmnFDa/xRnhulW3eAv1rJR1bDKNlfcmA==;EndpointSuffix=core.windows.net" 
+  # --from-literan=sqlserver-pass=5JpN-zPn0QCo
