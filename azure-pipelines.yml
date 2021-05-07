@@ -1,0 +1,32 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+    - main
+
+  paths:
+    exclude:
+      - azure-pipelines.yml
+
+stages:
+  - stage: Deploy
+    displayName: Deploy to AKS
+    jobs:
+      - deployment: Deploy
+        pool:
+          vmImage: 'ubuntu-latest'
+        environment: K8S-Prod.default
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: KubernetesManifest@0
+                  displayName: Creacion del deployment
+                  inputs:
+                    action: deploy
+                    manifests: deploy-myMicroservice.yaml
