@@ -15,7 +15,7 @@ spec:
         app: webapp-front
     spec:
       imagePullSecrets:
-        - name: drnacr-key
+      - name: drnacr-key
       containers:      
       - name: webapp-front
         env:
