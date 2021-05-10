@@ -13,10 +13,11 @@ spec:
       labels:
         app: webapp-back
     spec:
+      imagePullSecrets:
+      - name: drnacr-key
       containers:
       - name: webapp-back
-        image: josehh/webapp.back:v1
-        imagePullPolicy: IfNotPresent
+        image: drnacr.azurecr.io/webapp.back:latest        
         resources:
           limits:
             memory: "128Mi"
