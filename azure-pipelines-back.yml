@@ -10,9 +10,9 @@ trigger:
 
   paths:
     include:
-      - webapp/webapp.front
+      - webapp/webapp.back
     exclude:
-      - azure-pipelines-front.yml
+      - azure-pipelines-back.yml
 
 stages:
   - stage: Build
@@ -25,10 +25,10 @@ stages:
           - task: Docker@2
             inputs:
               containerRegistry: 'Druni-acr'
-              repository: 'webapp.front'
+              repository: 'webapp.back'
               command: 'buildAndPush'
-              Dockerfile: 'webapp/webapp.front/Dockerfile'
-              buildContext: 'webapp/webapp.front/'
+              Dockerfile: 'webapp/webapp.back/Dockerfile'
+              buildContext: 'webapp/webapp.back/'
               tags: |
                 $(Build.BuildId)
                 latest
@@ -49,4 +49,4 @@ stages:
                   displayName: Creacion del deployment
                   inputs:
                     action: deploy
-                    manifests: ./webapp/.k8s/webapp.front.*.yml
+                    manifests: ./webapp/.k8s/webapp.back.*.yml
