@@ -29,8 +29,10 @@ stages:
               command: 'buildAndPush'
               Dockerfile: 'webapp/webapp.front/Dockerfile'
               buildContext: 'webapp/webapp.front/'
-              tags: |                
+              tags: | 
+                $(Build.BuildId)
                 latest
+
       
   - stage: Deploy
     displayName: Deploy to AKS

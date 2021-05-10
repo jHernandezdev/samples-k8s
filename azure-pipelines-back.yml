@@ -29,7 +29,8 @@ stages:
               command: 'buildAndPush'
               Dockerfile: 'webapp/webapp.back/Dockerfile'
               buildContext: 'webapp/webapp.back/'
-              tags: |                
+              tags: |
+                $(Build.BuildId)
                 latest
       
   - stage: Deploy
