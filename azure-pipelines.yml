@@ -9,10 +9,27 @@ trigger:
     - main
 
   paths:
+    include:
+      - webapp/webapp.front/**
     exclude:
       - azure-pipelines.yml
 
 stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        displayName: Build and push containers
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'Druni-acr'
+              repository: 'webapp.front'
+              command: 'buildAndPush'
+              Dockerfile: 'webapp/webapp.front/Dockerfile'
+              buildContext: 'webapp/webapp.front/'
+      
   - stage: Deploy
     displayName: Deploy to AKS
     jobs:
