@@ -49,5 +49,6 @@ stages:
                 - task: KubernetesManifest@0
                   displayName: Creacion del deployment
                   inputs:
-                    action: deploy
+                    action: deploy                    
                     manifests: ./webapp/.k8s/webapp.front.*.yml
+                    containers: drnacr.azurecr.io/webapp.front:$(Build.BuildId)
