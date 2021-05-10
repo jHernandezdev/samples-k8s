@@ -50,3 +50,4 @@ stages:
                   inputs:
                     action: deploy
                     manifests: ./webapp/.k8s/webapp.back.*.yml
+                    containers: drnacr.azurecr.io/webapp.back:$(Build.BuildId)
