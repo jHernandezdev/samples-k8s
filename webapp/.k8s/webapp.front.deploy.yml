@@ -14,7 +14,9 @@ spec:
       labels:
         app: webapp-front
     spec:
-      containers:
+      imagePullSecrets:
+        - name: drnacr-key
+      containers:      
       - name: webapp-front
         env:
           - name: WEBAPPBACKURL
