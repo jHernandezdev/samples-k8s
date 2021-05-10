@@ -22,8 +22,10 @@ spec:
               configMapKeyRef:
                 key: WEBAPPBACKURL
                 name: webapp
-        image: josehh/webapp.front:v1
+        image: drnacr.azurecr.io/webapp.front:latest
         imagePullPolicy: IfNotPresent
+        imagePullSecrets:
+          - name: drnacr-key
         resources:
           limits:
             memory: "128Mi"
