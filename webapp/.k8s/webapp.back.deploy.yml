@@ -17,7 +17,8 @@ spec:
       - name: drnacr-key
       containers:
       - name: webapp-back
-        image: drnacr.azurecr.io/webapp.back:latest        
+        image: drnacr.azurecr.io/webapp.back:latest
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "128Mi"
