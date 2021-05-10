@@ -28,7 +28,7 @@ namespace webapp.back.Controllers
                 new Movie { Genre = "Miedito", ID = 1, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "The Ring" },
                 new Movie { Genre = "Miedito extremo", ID = 1, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "The Ring 2" },
                 new Movie { Genre = "Miedito extremo", ID = 1, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "It" },
-                new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Top Secret" }
+                new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Top Secret" },
                 new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Regreso al futuro" }
             };
             return Ok(peliculas);
