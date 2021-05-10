@@ -49,4 +49,4 @@ stages:
                   displayName: Creacion del deployment
                   inputs:
                     action: deploy
-                    manifests: ./webapp/.k8s/*.yml
+                    manifests: ./webapp/.k8s/webapp.front.*.yml
