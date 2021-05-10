@@ -23,9 +23,7 @@ spec:
                 key: WEBAPPBACKURL
                 name: webapp
         image: drnacr.azurecr.io/webapp.front:latest
-        imagePullPolicy: IfNotPresent
-        imagePullSecrets:
-          - name: drnacr-key
+        imagePullPolicy: IfNotPresent        
         resources:
           limits:
             memory: "128Mi"
