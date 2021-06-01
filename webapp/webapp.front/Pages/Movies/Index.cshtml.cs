@@ -16,18 +16,27 @@ namespace webapp.front.Pages.Movies
         }
 
         public List<Movie> Peliculas;
-
+        public string Error = "Sin error";
         public async Task OnGet()
         {
             Peliculas = new List<Movie>();
             var client = _clientFactory.CreateClient("webapp.back");
 
-            var resultado = await client.GetAsync("/Movies");
-            if (resultado.IsSuccessStatusCode)
+            try
             {
-                string response = await resultado.Content.ReadAsStringAsync();
-                Peliculas.AddRange(Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<Movie>>(response));
+                var resultado = await client.GetAsync("/Movies");
+                if (resultado.IsSuccessStatusCode)
+                {
+                    string response = await resultado.Content.ReadAsStringAsync();
+                    Peliculas.AddRange(Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<Movie>>(response));
+                }
             }
+            catch (System.Exception ex)
+            {
+                Error = ex.Message;
+            }
+
+
 
         }
     }
