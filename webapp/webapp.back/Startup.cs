@@ -28,7 +28,7 @@ namespace webapp.back
             });
             
             services.AddDbContext<WebAppContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WEBAPPCONTEXT")));
+                    options.UseSqlServer(Configuration["WEBAPPCONTEXT"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
