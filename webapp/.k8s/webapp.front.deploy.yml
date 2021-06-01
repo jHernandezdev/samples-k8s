@@ -19,6 +19,9 @@ spec:
       containers:      
       - name: webapp-front
         env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+
           - name: WEBAPPBACKURL
             valueFrom:
               configMapKeyRef:
