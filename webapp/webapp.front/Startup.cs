@@ -27,7 +27,7 @@ namespace webapp.front
 
             services.AddHttpClient("webapp.back", c =>
             {
-                c.BaseAddress = new Uri(Configuration["WEBAPPBACKURL"] ?? "http://localhost:5001/");
+                c.BaseAddress = new Uri(Configuration["WEBAPPBACKURL"] ?? "http://localhost:5000/");
             });
         }
 
