@@ -13,17 +13,14 @@ namespace webapp.back
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration;            
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; }        
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, ILogger<Startup> logger)
+        public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Configuration["WEBAPPCONTEXT"];
-            logger.LogInformation(connectionString ?? "Sin cadena");
-            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -35,7 +32,7 @@ namespace webapp.back
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
@@ -43,6 +40,9 @@ namespace webapp.back
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "webapp.back v1"));
             }
+
+            string connectionString = Configuration["WEBAPPCONTEXT"];            
+            logger.LogInformation(connectionString ?? "Sin cadena");
 
             app.UseHttpsRedirection();
 
