@@ -33,7 +33,16 @@ namespace webapp.back.Controllers
                 new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Regreso al futuro" }
             };
             */
-            return Ok(_context.Movie.ToList<Movie>());
+            try
+            {
+                return Ok(_context.Movie.ToList<Movie>());    
+            }
+            catch (System.Exception ex)
+            {
+                
+                return StatusCode(500, ex.Message);
+            }
+            
         }
     }
 }
