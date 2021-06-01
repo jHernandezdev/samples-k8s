@@ -14,7 +14,7 @@ spec:
         app: mssql
     spec:
       terminationGracePeriodSeconds: 30
-      hostname: mssqlinst
+      # hostname: mssqlinst
       securityContext:
         runAsUser: 10001
         runAsGroup: 10001
@@ -56,4 +56,4 @@ spec:
     - protocol: TCP
       port: 1433
       targetPort: 1433
-  type: LoadBalancer
+  # type: LoadBalancer
