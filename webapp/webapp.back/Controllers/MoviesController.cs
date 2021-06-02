@@ -32,6 +32,8 @@ namespace webapp.back.Controllers
                 new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Top Secret" },
                 new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Regreso al futuro" }
             };
+            
+            return peliculas;
             /*
             try
             {
