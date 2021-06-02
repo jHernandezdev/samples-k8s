@@ -19,7 +19,7 @@ spec:
       - name: webapp-back
         env:
           - name: WEBAPPCONTEXT
-            value: "Data Source=mssql;Database=MOVIES_DB;User Id=sa;Password=pnNBKBTr9Mfz"
+            value: "Data Source=mssql-deployment,1433;Database=MOVIES_DB;User Id=sa;Password=pnNBKBTr9Mfz"
         image: drnacr.azurecr.io/webapp.back:latest
         imagePullPolicy: Always
         resources:
