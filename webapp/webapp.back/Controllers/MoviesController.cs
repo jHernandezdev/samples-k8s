@@ -32,12 +32,12 @@ namespace webapp.back.Controllers
                 new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Top Secret" },
                 new Movie { Genre = "Risa", ID = 2, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "Regreso al futuro" }
             };
-
-            return OK(peliculas);
+            
+            return Ok(peliculas);
             /*
             try
             {
-                return Ok(_context.Movie.ToList<Movie>());    
+                return O(_context.Movie.ToList<Movie>());    
             }
             catch (System.Exception ex)
             {
