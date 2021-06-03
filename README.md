@@ -18,7 +18,8 @@ kubectl create secret docker-registry drnacr-key
 ````bash
 kubectl create serviceaccount az-devops
 
-kubectl create clusterrolebinding add-on-default-admin 
+kubectl create rolebinding add-on-default-admin 
     --clusterrole=cluster-admin 
-    --serviceaccount=default:az-devops
+    --serviceaccount=default:az-devops 
+    --namespace=default
 ````
