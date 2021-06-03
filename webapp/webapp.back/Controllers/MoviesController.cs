@@ -23,7 +23,7 @@ namespace webapp.back.Controllers
         [HttpGet]
         public IActionResult Get()
         {    
-                    
+            /*         
             List<Movie> peliculas = new List<Movie>
             {
                 new Movie { Genre = "Miedito", ID = 1, Price = 2.10m, ReleaseDate = DateTime.Now, Title = "The Ring" },
@@ -34,17 +34,17 @@ namespace webapp.back.Controllers
             };
             
             return Ok(peliculas);
-            /*
+            */
+            
             try
             {
-                return O(_context.Movie.ToList<Movie>());    
+                return Ok(_context.Movie.ToList<Movie>());    
             }
             catch (System.Exception ex)
             {
                 
                 return StatusCode(500, ex.Message);
-            }
-            */
+            }            
         }
     }
 }
