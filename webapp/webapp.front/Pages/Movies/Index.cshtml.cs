@@ -10,13 +10,11 @@ namespace webapp.front.Pages.Movies
 {
     public class MoviesModel : PageModel
     {
-        private readonly IHttpClientFactory _clientFactory;
-        private readonly ILogger<MoviesModel> _logger;
+        private readonly IHttpClientFactory _clientFactory;        
 
-        public MoviesModel(IHttpClientFactory clientFactory, ILogger<MoviesModel> logger)
+        public MoviesModel(IHttpClientFactory clientFactory)
         {
-            _clientFactory = clientFactory;
-            _logger = logger;
+            _clientFactory = clientFactory;            
         }
 
         public List<Movie> Peliculas;
@@ -25,8 +23,7 @@ namespace webapp.front.Pages.Movies
         {
             Peliculas = new List<Movie>();
             var client = _clientFactory.CreateClient("webapp.back");
-           
-           _logger.LogInformation(client.BaseAddress.ToString());            
+                      
             var resultado = await client.GetAsync("/Movies");
             if (resultado.IsSuccessStatusCode)
             {
