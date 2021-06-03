@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnsutils
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dnsutils
+
+  template:
+    metadata:
+      labels:
+        app: dnsutils
+    spec:
+      containers:
+      - name: dnsutils
+        image: gcr.io/kubernetes-e2e-test-images/dnsutils:1.3
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m" 
+        command:
+          - sleep
+          - "3600"
